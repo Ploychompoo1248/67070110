@@ -1,12 +1,14 @@
-.profile1{
+.container1{
     display: flex;
     justify-content: center;
-    flex-direction: row;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
 }
 .profile{
-    width: 300px;
-    height: 300px;
-    background-image: url(https://i.pinimg.com/736x/0d/42/90/0d42905fc5e9d14fa032d8ea0282bf68.jpg);
+    width: 183px;
+    height: 183px;
+    background-image: url(https://i.pinimg.com/736x/aa/3c/60/aa3c606016e9f5791e57763b9846fc21.jpg);
     background-position: center;
     background-size: cover;
     border-radius: 180%;
@@ -16,17 +18,40 @@
 .notify{
     width: 40px;
     height: 40px;
-    background-color: #be2623;
+    background-color: #ee6b6e;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 50%;
     position: absolute;
-    bottom: 15px;
-    right: 20px;
+    bottom: -6px;
+    right: 25px;
 }
 .botton{
     background-color: beige;
     width: 50px;
     height: 30px;
+}
+.row{
+    padding: 15px;
+    flex-direction: row;
+    justify-content: center;
+}
+.container6{
+    background-color: tan;
+    justify-content: center;
+    flex-direction: row;
+    display: flex
+
+}
+.list{
+    transform: translateY(-100px);
+    position: relative;
+    overflow: scroll;
+    width: 1000px;
+    height: 500px;
+}
+.list1{
+    display: flex;
+    justify-content: space-around;
 }
