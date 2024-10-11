@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style2.css">
+</head>
+<body>
+    <h1 id="user" style="text-align: center; margin-top: 40px;">Username</h1>
+    <div class="profile1"></div><div class="profile" id="profile">
+        <div class="notify"><p>1</p></div></div>
+    </div>
+    <label>Set the Username</label><input type="text" id = "input"><button onclick="setName()">SET</button>
+    <label>Set the profile image URL</label><input type="text" id = "input"><button onclick="setImg()">SET</button>
+    <label>Add paragraph</label><input type="text" id = "input"><button onclick="addParagragh()">SET</button>
+    <h3 style="text-align: center; margin-top: 40px;">Phone Number List</h3>
+    <div class="container">
+
+    <script>
+        const username = document.getElementById("user");
+        const input = document.getElementById("input");
+        const profile = document.getElementById("profile");
+        const newdiv = document.getElementsByClassName("container")[0];
+        function setName(){
+            username.textContent = document.getElementById("input").value ;
+        }
+        function setImg(){
+            profile.style.backgroundImage = "url(" + input.value + ")";
+            console.log(input.value);
+            input.value = "";
+        }
+        function addParagragh(){
+            const newpara = document.createElement("p");
+            newpara.textContent = document.getElementById("input");
+            newdiv.appendChild(newpara);
+        }
+    </script>
+</body>
+</html>
