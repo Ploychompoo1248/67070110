@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+    <style>
+        body{
+            font-family: "Kanit", sans-serif;
+            font-weight: 300;
+            font-style: normal;
+        }
+        a {
+            font-weight: bold;
+            font-size: 35px;
+            color: black;
+            background-color: transparent;
+            text-decoration: none;
+        }
+        a:hover {
+            font-weight: bold;
+            color: rgb(61, 63, 200);
+            background-color: transparent;
+            text-decoration: underline;
+        }
+        th, td {
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+        button {
+            background-color: tan;
+            color: black;
+            border: 55px;
+            border-radius: 10px;
+            transition-duration: 0.4s;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: darkolivegreen;
+            color: bisque;
+        }
+    </style>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style2.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container1">
+        <a id="user" style="text-align: center; margin-top: 40px;" href="https://www.instagram.com/hoseki12/">Ploychompoo Jindamai 67070110</a>
+        <div class="profile" id="profile">
+            <div class="notify" style="background-color: #ee6b6e;"><p>1</p></div>
+        </div>
+    </div>
+    <div class="row" style="text-align: center; font-size: larger;">
+        <label>Set the Username </label><input placeholder="Enter Username" type="text" id = "name" style="margin: 10px; font-size: medium;"><button onclick="setName()" style="font-size: medium">SET</button></div>
+    <div class="row" style="text-align: center; font-size: larger;">
+        <label>Set the profile image URL </label><input placeholder="Enter image URL" type="text" id = "img" style="margin: 10px; font-size: medium;" ><button onclick="setImg() " style="font-size: medium">SET</button></div>
+    <h1 style="text-align: center; margin-top: 40px;">Phone Number List</h1>
+    <div class="row" style="text-align: center; ">
+        <label></label><input placeholder="Name" type="text" id = "name1" style="margin: 10px; font-size: medium;"><input placeholder="Tel" type="text" id="tel" style="margin: 10px; font-size: medium;"><button type="submit" onclick="addParagragh()" style="margin: 10px; font-size: medium;">ADD</button><button type="submit" onclick="exportToCSV()" style="margin: 10px; font-size: medium;">EXPORT</button>
+    </div>
+    <div style="justify-content: center;">
+        <table id="table" style=" margin-left: auto; margin-right: auto; border: 0px; width: 50%;">
+            <thead>
+                <tr>
+                    <th style="background-color: #808000; border-bottom: 3px solid rgb(61, 60, 60);">No</th>
+                    <th style="background-color: #808000; border-bottom: 3px solid rgb(61, 60, 60);" >Name</th>
+                    <th style="background-color: #808000; border-bottom: 3px solid rgb(61, 60, 60);">Tel</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>    
+        </table>
+
+    </div>
+    
+    <script>
+        let count = 0;
+        const phoneBook = {};
+        const username = document.getElementById("user");
+        const input = document.getElementById("input");
+        const profile = document.getElementById("profile");
+        const newdiv = document.getElementsByClassName("container")[0];
+        let num=1;
+        function setName(){
+            username.textContent = document.getElementById("name").value ;
+        }
+        function setImg(){
+            profile.style.backgroundImage = "url(" + img.value + ")";
+            console.log(img.value);
+            img.value = "";
+        }
+        function addParagragh(){
+            let name1 = document.getElementById("name1").value;
+            let tel = document.getElementById("tel").value;
+            let table = document.getElementById("table").getElementsByTagName('tbody')[0];
+                    
+            if (name1&&tel){
+                count++;
+                phoneBook[count] = { name: name1, phone: tel };
+                let row = table.insertRow();
+                let nocell = row.insertCell(-1);
+                let namecell = row.insertCell(-1);
+                let phonecell = row.insertCell(-1);
+
+                nocell.textContent = num;
+                namecell.textContent = name1;
+                phonecell.textContent = tel;
+                num++;
+            }
+                
+            else {
+                alert("Please enter your name and phone number.")
+            }
+
+        }
+        function exportToCSV() {
+            let csvContent = "data:text/csv;charset=utf-8,";
+            csvContent += "No,Name,Phone\n";
+            for (let key in phoneBook) {
+                const entry = phoneBook[key];
+                const row = `${key},${entry.name},${entry.phone}`;
+                csvContent += row + "\n";
+            }
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", "phone_book.csv");
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    </script>
+</body>
+</html>
